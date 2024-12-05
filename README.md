@@ -11,5 +11,5 @@
 ## Follow below steps to setup the project
 
 - To install depedndencies run `npm install`
-- Once the depedencies are installed we can run test using `npm run test`
+- Once the depedencies are installed we can run tests using `npm run test`
 
