@@ -24,6 +24,10 @@ test('input with new line, "3\\n2,5" and expect return value to be 10', () => {
     expect(add("3\n2,5")).toBe(10);
 });
 
+test('input with new line, "3\\n2,5\\n6" and expect return value to be 16', () => {
+    expect(add("3\n2,5\n6")).toBe(16);
+});
+
 test('input with new line, "3,2\\n6" and expect return value to be 11', () => {
     expect(add("3,2\n6")).toBe(11);
 });
@@ -32,4 +36,7 @@ test('input with delimiter, "//;\\n1;2" and expect return value to be 3', () => 
     expect(add("//;\n1;2")).toBe(3);
 });
 
+test('input with delimiter, "//:\\n1:2\n3" and expect return value to be 6', () => {
+    expect(add("//:\n1:2\n3")).toBe(6);
+});
 

@@ -11,7 +11,7 @@ const add = (numbers) => {
         // there is delimiter in this
         separator = numbers.substring(
             numbers.indexOf("//") + 2,
-            numbers.lastIndexOf('\n')
+            numbers.indexOf('\n')
         );
 
         // remove the delimiter string from numbers string
@@ -19,6 +19,7 @@ const add = (numbers) => {
         delimieterArr.shift();
         numbers = delimieterArr.join("\n");
     }
+
 
     return getSumFromString(numbers, separator);
 };
