@@ -36,7 +36,14 @@ test('input with delimiter, "//;\\n1;2" and expect return value to be 3', () => 
     expect(add("//;\n1;2")).toBe(3);
 });
 
-test('input with delimiter, "//:\\n1:2\n3" and expect return value to be 6', () => {
+test('input with delimiter, "//:\\n1:2\\n3" and expect return value to be 6', () => {
     expect(add("//:\n1:2\n3")).toBe(6);
 });
 
+test('Add "2,3,4,-5,5" and expect funtion to throw exception', () => {
+    expect(() => add("2,3,4,-5,5")).toThrowError('negative numbers not allowed -5');
+});
+
+test('Add "2,3,4,5,-5,-6,-8" and expect funtion to throw exception', () => {
+    expect(() => add("2,3,4,5,-5,-6,-8")).toThrowError('negative numbers not allowed -5,-6,-8');
+});

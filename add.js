@@ -1,11 +1,16 @@
 'use strict'
 
+let negativeNumbers = [];
+
 /**
  * Return sum of separated numbers in string
  * @param {string} numbers
  * @returns {number} 
  */
 const add = (numbers) => {
+    // reset negative numbers due to closures and to clean old values
+    negativeNumbers = [];
+
     let separator = ',';
     if (numbers.startsWith("//")) {
         // there is delimiter in this
@@ -19,9 +24,14 @@ const add = (numbers) => {
         delimieterArr.shift();
         numbers = delimieterArr.join("\n");
     }
+    
 
-
-    return getSumFromString(numbers, separator);
+    const total = getSumFromString(numbers, separator);
+    
+    if (negativeNumbers.length > 0) {
+        throw new Error("negative numbers not allowed " + negativeNumbers.join(','));
+    }
+    return total;
 };
 
 /**
@@ -35,7 +45,7 @@ const getSumFromString = (numbers, separator) => {
     let sum = 0;
     numbersArr.map((number) => {
 
-        if (number && !containsOnlyDigits(number)) {
+        if (number && !containsOnlyDigits(number) && number.includes('\n')) {
             // initially added support for new line using map but later to reuse the same sum logic used recursion
             // let numbersArrWithNewLine = number.split("\n");
             // numbersArrWithNewLine.map((number) => {
@@ -44,6 +54,9 @@ const getSumFromString = (numbers, separator) => {
             sum += getSumFromString(number, "\n");
 
         } else {
+            if (number < 0) {
+                negativeNumbers.push(number); 
+            }
             sum += Number(number);
         }
 
