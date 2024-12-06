@@ -6,7 +6,21 @@
  * @returns {number} 
  */
 const add = (numbers) => {
-   return getSumFromString(numbers, ',');
+    let separator = ',';
+    if (numbers.startsWith("//")) {
+        // there is delimiter in this
+        separator = numbers.substring(
+            numbers.indexOf("//") + 2,
+            numbers.lastIndexOf('\n')
+        );
+
+        // remove the delimiter string from numbers string
+        let delimieterArr = numbers.split("\n");
+        delimieterArr.shift();
+        numbers = delimieterArr.join("\n");
+    }
+
+    return getSumFromString(numbers, separator);
 };
 
 /**
