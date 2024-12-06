@@ -28,4 +28,8 @@ test('input with new line, "3,2\n6" and expect return value to be 11', () => {
     expect(add("3,2\n6")).toBe(11);
 });
 
+test('input with delimiter, "//;\n1;2" and expect return value to be 3', () => {
+    expect(add("//;\n1;2")).toBe(3);
+});
+
 
