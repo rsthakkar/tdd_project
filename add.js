@@ -42,26 +42,27 @@ const add = (numbers) => {
  */
 const getSumFromString = (numbers, separator) => {
     let numbersArr = numbers.split(separator);
-    let sum = 0;
+    let result = separator === '*' ? 1 : 0;
     numbersArr.map((number) => {
 
         if (number && !containsOnlyDigits(number) && number.includes('\n')) {
-            // initially added support for new line using map but later to reuse the same sum logic used recursion
-            // let numbersArrWithNewLine = number.split("\n");
-            // numbersArrWithNewLine.map((number) => {
-            //     sum += Number(number);
-            // })
-            sum += getSumFromString(number, "\n");
+            result += getSumFromString(number, "\n");
 
         } else {
             if (number < 0) {
                 negativeNumbers.push(number); 
             }
-            sum += Number(number);
+
+            if (separator === '*') {
+                result *= Number(number)
+            } else {
+                result += Number(number);
+            }
+
         }
 
     });
-    return sum;
+    return result;
 }
 
 /**

@@ -51,3 +51,7 @@ test('Add "2,3,4,5,-5,-6,-8" and expect funtion to throw exception', () => {
 test('input with delimiter, "//;\\n1;2;-3" expect funtion to throw exception', () => {
     expect(() => add("//;\n1;2;-3")).toThrowError('negative numbers not allowed -3');
 });
+
+test('input with delimiter, "//*\\n1*2*3" to be 6', () => {
+    expect(add("//*\n3*2*3")).toBe(18);
+});
